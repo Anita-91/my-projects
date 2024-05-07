@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>COUNTER-TOKEN</title>
+    <meta http-equiv="refresh" content="5"> 
+    <style>
+        table, th, td { 
+          border: 1px solid black;
+          font-family: arial, sans-serif;
+        }
+        #table_border  {
+             width: 100%;
+             table-layout: fixed;
+             }
+        th {
+          text-align: center;
+          padding: 14px;
+          background-color: rgb(235, 130, 230);
+          font-size: 35px;
+          color: black;
+        }
+        
+        td {
+          text-align: center;
+          padding: 40px;
+          font-size: 60px;
+        }
+        tr {
+          background-color: red;
+          color: white;
+        }
+        .color {background-color: green; }
+         
+    </style>
+</head>
+<body onload="myfunc()"> 
+   <table id="table_border">
+      <tr>
+        <th>COUNTER</th>
+        <th>TOKEN</th>
+      </tr> 
+      {% for key,value in room.items %}
+      <tr id="rows">
+        <td class="count_data">{{value}}</td>
+        <td id="token_data">{{key}}</td>
+      </tr>
+      {% endfor %}
+   </table>
+   <script>
+    console.log("js loaded")
+    function myfunc() {
+       var flag = '{{flag}}';
+       //console.log("flag::",flag);
+       
+       console.log("--------------")
+       var table = document.getElementById("table_border");
+       //console.log("table::",table)
+       var rows = table.getElementsByTagName("tr");
+       console.log("rows::",rows)
+       for (var i = 1; i < rows.length; i++) {
+            console.log("row[i]===> i",i)
+            for(var j=0; j<flag.length; j++) {
+                if (flag[j] == '6') {
+                   if (i == j+1) 
+                     { 
+                     console.log("row ="+i+"index ="+j);
+                     rows[i].className = "color";
+                     }
+               }
+            }
+       }
+     }
+    </script>
+</body>
+</html>
+   
